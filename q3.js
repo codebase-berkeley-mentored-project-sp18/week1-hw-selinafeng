@@ -21,8 +21,21 @@ Example:
     })
 --> 3
 */
+
 function getObjectNestingDepth(inputObject) {
-  //================
-  // YOUR CODE HERE
-  //================
+  var maxDepth = 1;
+  for (var key in inputObject) {
+    maxDepth = 0;
+    var depth = 0;
+    if (!(inputObject[key] && typeof inputObject[key] === 'object' && inputObject[key].constructor === Object)) {
+      depth = 1;
+    }
+    else {
+      depth = 1 + getObjectNestingDepth(inputObject[key]);
+    }
+    if (depth > maxDepth) {
+      maxDepth = depth;
+    }
+  }
+  return maxDepth;
 }
